@@ -1,2 +1,2 @@
-# apple-share-price-d3.js
-apple-share-price-d3.js
+# d3-js-charts
+creating charts using d3.js

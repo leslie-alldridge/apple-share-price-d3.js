@@ -1,0 +1,20 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #147fe4; 
+    font-family: 'Raleway',sans-serif; 
+    font-size: 42px; font-weight: 800; 
+    line-height: 72px; margin: 0 0 24px; 
+    text-align: center; 
+}
+
+.text {
+    color: #147fe4; 
+    font-family: 'Raleway',sans-serif; 
+    font-size: 12px; font-weight: 800; 
+    line-height: 72px; margin: 0 0 24px; 
+    text-align: center; 
+}
