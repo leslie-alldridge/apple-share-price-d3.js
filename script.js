@@ -18,6 +18,7 @@ jQuery.ajax({
     for (let i = 0; i < closingPrice.length; i++){
         s.push(closingPrice[i].closingPrice);
     }
+    drawAgain(s, parsedData);
  }
 });
 
@@ -52,6 +53,15 @@ function drawChart(data) {
     
     var y = d3.scaleLinear()
         .rangeRound([height, 0]);
+
+        var focus = svg.append("g")                                // **********
+    .style("display", "none"); 
+
+        focus.append("circle")                                 // **********
+        .attr("class", "y")                                // **********
+        .style("fill", "none")                             // **********
+        .style("stroke", "blue")                           // **********
+        .attr("r", 4); 
     
     var line = d3.line()
         .x(function(d) { return x(d.date)})
@@ -62,7 +72,8 @@ function drawChart(data) {
     g.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x))
-        .select(".domain")
+        .select(".domain");
+
     
     g.append("g")
         .call(d3.axisLeft(y))
@@ -72,7 +83,7 @@ function drawChart(data) {
         .attr("y", 6)
         .attr("dy", "0.71em")
         .attr("text-anchor", "end")
-        .text("Price ($USD)")
+        .text("Price ($USD)");
     
     g.append("path")
         .datum(data)
@@ -84,7 +95,61 @@ function drawChart(data) {
         .attr("d", line);
 }
 
+var chart = $("#line-chart"),
+    aspect = chart.width() / chart.height(),
+    container = chart.parent();
+$(window).on("resize", function() {
+    var targetWidth = container.width();
+    chart.attr("width", targetWidth);
+    chart.attr("height", Math.round(targetWidth / aspect));
+}).trigger("resize");
 
+function drawAgain(s, parsedData) {
+var ctx = document.getElementById("myChart").getContext('2d');
+console.log(s.reverse());
+var numberArray = [];
+for (let i = 100; i >= 1; i--){
+    numberArray.push(i);
+}
+console.log(numberArray.reverse());
+var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: numberArray,
+        datasets: [{
+            label: 'Apple Share Price Last 100 Days',
+            data: s,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+}
 
 
 
