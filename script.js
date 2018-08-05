@@ -36,7 +36,7 @@ function parseData(data) {
 }
 //create chart using d3
 function drawChart(data) {
-    var svgWidth = 800, svgHeight = 400;
+    var svgWidth = 1200, svgHeight = 600;
     var margin = { top: 20, right: 20, bottom: 30, left: 50 };
     var width = svgWidth - margin.left - margin.right;
     var height = svgHeight - margin.top - margin.bottom;
@@ -95,14 +95,6 @@ function drawChart(data) {
         .attr("d", line);
 }
 
-var chart = $("#line-chart"),
-    aspect = chart.width() / chart.height(),
-    container = chart.parent();
-$(window).on("resize", function() {
-    var targetWidth = container.width();
-    chart.attr("width", targetWidth);
-    chart.attr("height", Math.round(targetWidth / aspect));
-}).trigger("resize");
 
 function drawAgain(s, parsedData) {
 var ctx = document.getElementById("myChart").getContext('2d');
@@ -117,7 +109,7 @@ var myLineChart = new Chart(ctx, {
     data: {
         labels: numberArray,
         datasets: [{
-            label: 'Apple Share Price Last 100 Days',
+            label: 'Apple Share Price',
             data: s,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -135,18 +127,48 @@ var myLineChart = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 2,
+            fill: false
         }]
     },
     options: {
         scales: {
             yAxes: [{
                 ticks: {
+                    fontSize: 20,
                     beginAtZero:true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Price ($USD)',
+                    fontSize: 20
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 20,
+                    beginAtZero:true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Days',
+                    fontSize: 20
                 }
             }]
-        }
-    }
+        },
+        legend: {
+            labels: {
+                fontSize: 20
+            }
+        },
+        tooltips: {
+            titleFontSize: 20,
+            bodyFontSize: 20,
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+    
 });
 
 }

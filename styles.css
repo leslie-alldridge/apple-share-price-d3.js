@@ -4,44 +4,57 @@ html, body {
 }
 
 h1 {
+    padding-left: 10%;
     color: #147fe4; 
     font-family: 'Raleway',sans-serif; 
     font-size: 42px; font-weight: 800; 
     line-height: 72px; margin: 0 0 24px; 
-    text-align: center; 
+    
+}
+
+.head {
+    color: #147fe4; 
+    font-family: 'Raleway',sans-serif; 
+    font-size: 3em; font-weight: 800; 
+    line-height: 72px; margin: 0 0 24px; 
+    text-align: center;
 }
 
 .text {
     color: #147fe4; 
     font-family: 'Raleway',sans-serif; 
-    font-size: 12px; font-weight: 800; 
+    font-size: 1em; font-weight: 800; 
     line-height: 72px; margin: 0 0 24px; 
     margin-left: 80px;
 }
 
 img {
+    margin-top: 0px;
     width: 160px;
     height: 80px;
 }
 
 div {
-  display: inline-flex;
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
+  margin-left: 4%;
 }
 
-svg {
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: left;
-}
 
-canvas{
+
+#myChart{
     margin-left: 40px;
-    width:700px !important;
-    height:600px !important;
+    margin-bottom: 40px;
+    max-width: 1400px;
+    max-height: 800px;
   
-  }
+}
+
+p {
+    font-size: 3em;
+    color: steelblue;
+    text-align: center; 
+}
 
